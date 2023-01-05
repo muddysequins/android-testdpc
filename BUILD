@@ -26,9 +26,28 @@ android_library(
     ],
 )
 
+aar_import(
+    name = "dpcsupport",
+    aar = "lib/dpcsupport_release.aar",
+    deps = [
+        "@maven//:androidx_core_core",
+        "@maven//:androidx_lifecycle_lifecycle_common",
+    ],
+)
+
+android_library(
+    name = "dpcsupport_deps",
+    exports = [
+        ":dpcsupport",
+        "@maven//:androidx_activity_activity",
+        "@maven//:com_google_android_gms_play_services_auth",
+    ],
+)
+
 android_library(
     name = "androidx_deps",
     exports = [
+        "@maven//:androidx_activity_activity",
         "@maven//:androidx_annotation_annotation",
         "@maven//:androidx_collection_collection",
         "@maven//:androidx_core_core",
@@ -87,6 +106,7 @@ android_library(
         ":aidl",
         ":androidx_deps",
         ":bouncycastle_deps",
+        ":dpcsupport_deps",
         ":guava_deps",
         ":setupdesign_deps",
     ],

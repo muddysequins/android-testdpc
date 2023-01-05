@@ -111,6 +111,10 @@
             android:key="remove_account"
             android:title="@string/remove_account"
             testdpc:minSdkVersion="P" />
+        <com.afwsamples.testdpc.common.preference.DpcPreference
+            android:key="add_managed_account"
+            android:title="@string/add_managed_account_title"
+            testdpc:minSdkVersion="L" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apps_management_title">

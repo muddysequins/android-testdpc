@@ -96,6 +96,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 import com.afwsamples.testdpc.AddAccountActivity;
+import com.afwsamples.testdpc.AddManagedAccountActivity;
 import com.afwsamples.testdpc.CrossProfileAppsAllowlistFragment;
 import com.afwsamples.testdpc.CrossProfileAppsFragment;
 import com.afwsamples.testdpc.DeviceAdminReceiver;
@@ -439,6 +440,7 @@ public class PolicyManagementFragment extends BaseSearchablePolicyPreferenceFrag
   private static final String GRANT_KEY_PAIR_TO_APP_KEY = "grant_key_pair_to_app";
   private static final String SET_WIFI_MIN_SECURITY_LEVEL_KEY = "set_wifi_min_security_level";
   private static final String SET_WIFI_SSID_RESTRICTION_KEY = "set_wifi_ssid_restriction";
+  private static final String ADD_MANAGED_ACCOUNT_KEY = "add_managed_account";
 
   private static final String BATTERY_PLUGGED_ANY =
       Integer.toString(
@@ -515,6 +517,7 @@ public class PolicyManagementFragment extends BaseSearchablePolicyPreferenceFrag
   private DpcPreference mSetLockTaskFeaturesPreference;
   private DpcPreference mUnhideAppsParentPreference;
   private DpcPreference mHideAppsParentPreference;
+  private DpcPreference mAddManagedAccountPreference;
 
   private DpcSwitchPreference mEnableLogoutPreference;
   private Preference mAffiliatedUserPreference;
@@ -703,6 +706,12 @@ public class PolicyManagementFragment extends BaseSearchablePolicyPreferenceFrag
     findPreference(GET_DISABLE_ACCOUNT_MANAGEMENT_KEY).setOnPreferenceClickListener(this);
     findPreference(ADD_ACCOUNT_KEY).setOnPreferenceClickListener(this);
     findPreference(REMOVE_ACCOUNT_KEY).setOnPreferenceClickListener(this);
+    final CustomConstraint dpcSupportLibraryChecker = () ->
+        AddManagedAccountActivity.isDPCSupportLibraryPresent(this.getContext())
+            ? NO_CUSTOM_CONSTRAINT : R.string.requires_dpc_support_library;
+    mAddManagedAccountPreference = findPreference(ADD_MANAGED_ACCOUNT_KEY);
+    mAddManagedAccountPreference.setOnPreferenceClickListener(this);
+    mAddManagedAccountPreference.addCustomConstraint(dpcSupportLibraryChecker);
     findPreference(BLOCK_UNINSTALLATION_BY_PKG_KEY).setOnPreferenceClickListener(this);
     findPreference(BLOCK_UNINSTALLATION_LIST_KEY).setOnPreferenceClickListener(this);
     findPreference(APP_FEEDBACK_NOTIFICATIONS).setOnPreferenceChangeListener(this);
@@ -1106,6 +1115,9 @@ public class PolicyManagementFragment extends BaseSearchablePolicyPreferenceFrag
       return true;
     } else if (ADD_ACCOUNT_KEY.equals(key)) {
       getActivity().startActivity(new Intent(getActivity(), AddAccountActivity.class));
+      return true;
+    } else if (ADD_MANAGED_ACCOUNT_KEY.equals(key)) {
+      getActivity().startActivity(new Intent(getActivity(), AddManagedAccountActivity.class));
       return true;
     } else if (REMOVE_ACCOUNT_KEY.equals(key)) {
       chooseAccount();
