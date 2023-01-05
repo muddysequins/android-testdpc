@@ -21,8 +21,8 @@ aar_import(
 android_library(
     name = "setupdesign_deps",
     exports = [
+        ":setupcompat",
         ":setupdesign",
-        ":setupcompat"
     ],
 )
 
@@ -30,6 +30,7 @@ android_library(
     name = "androidx_deps",
     exports = [
         "@maven//:androidx_annotation_annotation",
+        "@maven//:androidx_collection_collection",
         "@maven//:androidx_core_core",
         "@maven//:androidx_enterprise_enterprise_feedback",
         "@maven//:androidx_legacy_legacy_support_v13",
@@ -38,7 +39,6 @@ android_library(
         "@maven//:androidx_localbroadcastmanager_localbroadcastmanager",
         "@maven//:androidx_preference_preference",
         "@maven//:androidx_recyclerview_recyclerview",
-        "@maven//:androidx_collection_collection"
     ],
 )
 
@@ -60,7 +60,6 @@ android_library(
 android_library(
     name = "test_deps",
     exports = [
-
     ],
 )
 
@@ -112,8 +111,8 @@ android_local_test(
     srcs = ["src/test/java/com/afwsamples/testdpc/common/PermissionsHelperTest.java"],
     manifest = MANIFEST,
     deps = [
+        ":test_deps",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -122,9 +121,9 @@ android_local_test(
     srcs = ["src/test/java/com/afwsamples/testdpc/feedback/AppStatesServiceTest.java"],
     manifest = MANIFEST,
     deps = [
-        ":testdpc_lib",
         ":androidx_deps",
-        ":test_deps"
+        ":test_deps",
+        ":testdpc_lib",
     ],
 )
 
@@ -133,8 +132,8 @@ android_local_test(
     srcs = ["src/test/java/com/afwsamples/testdpc/policy/wifimanagement/WifiConfigUtilTest.java"],
     manifest = MANIFEST,
     deps = [
+        ":test_deps",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -143,8 +142,8 @@ android_local_test(
     srcs = ["src/test/java/com/afwsamples/testdpc/provision/GetProvisioningModeActivityTest.java"],
     manifest = MANIFEST,
     deps = [
+        ":test_deps",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -153,9 +152,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/BooleanParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -164,9 +163,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/ByteParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -175,9 +174,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/CharParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -186,9 +185,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/DoubleParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -197,9 +196,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/FloatParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -208,9 +207,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/IntParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -219,9 +218,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/LongParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -230,9 +229,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/ShortParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -241,9 +240,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/StringParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -252,9 +251,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/CustomParserTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -263,9 +262,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/CallbackTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -274,9 +273,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/HelpTextGenerationTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -285,9 +284,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/InvalidCallsTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -296,9 +295,9 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/ParamTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
 
@@ -307,8 +306,8 @@ java_test(
     size = "small",
     srcs = ["src/test/java/com/afwsamples/testdpc/util/flags/RegistrationTest.java"],
     deps = [
+        ":test_deps",
         ":test_utils",
         ":testdpc_lib",
-        ":test_deps"
     ],
 )
