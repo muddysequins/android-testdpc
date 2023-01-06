@@ -28,7 +28,7 @@ android_library(
 
 aar_import(
     name = "dpcsupport",
-    aar = "lib/dpcsupport_release.aar",
+    aar = "lib/dpcsupport.aar",
     deps = [
         "@maven//:androidx_core_core",
         "@maven//:androidx_lifecycle_lifecycle_common",
@@ -119,6 +119,18 @@ android_library(
         "src/main/aidl/android/content/res/AssetFileDescriptor.aidl",
     ],
     idl_srcs = glob(["src/main/aidl/com/afwsamples/testdpc/comp/*.aidl"]),
+)
+
+android_library(
+    name = "dpcsupportfake",
+    srcs = glob(["src/dpcsupport/java/**/*.java"]),
+    manifest = "src/dpcsupport/AndroidManifest.xml",
+    custom_package = "com.google.android.apps.work.dpcsupport",
+    deps = [
+        "@maven//:androidx_activity_activity",
+        "@maven//:androidx_annotation_annotation",
+        "@maven//:androidx_lifecycle_lifecycle_common",
+    ],
 )
 
 java_library(
