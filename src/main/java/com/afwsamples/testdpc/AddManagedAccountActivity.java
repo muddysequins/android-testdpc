@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.ComponentActivity;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import androidx.core.app.ActivityOptionsCompat;
 import com.google.android.apps.work.dpcsupport.EnterpriseAccount;
 import com.google.android.apps.work.dpcsupport.EnterpriseAccountSetup;
 import com.google.android.apps.work.dpcsupport.EnterpriseAccountSetupCallback;
@@ -33,7 +36,16 @@ public class AddManagedAccountActivity extends ComponentActivity {
 
   public static boolean isDPCSupportLibraryPresent(Context context) {
     try {
-      EnterpriseAccountSetup test = new EnterpriseAccountSetup(null, context, null, null);
+      // This will not be used, but the constructor for EnterpriseAccountSetup requires a non-null value
+      ActivityResultRegistry registry = new ActivityResultRegistry() {
+        @Override
+        public <I, O> void onLaunch(int i,
+            @NonNull ActivityResultContract<I, O> activityResultContract, I i1,
+            @Nullable ActivityOptionsCompat activityOptionsCompat) {
+
+        }
+      };
+      EnterpriseAccountSetup test = new EnterpriseAccountSetup(registry, context, null, null);
       Log.d(TAG,
           "Successfully creates an instance of EnterpriseAccountSetup - DPC Support Library appears to be real");
       return true;
@@ -44,8 +56,6 @@ public class AddManagedAccountActivity extends ComponentActivity {
       return false;
     }
   }
-
-  ;
 
   private final EnterpriseAccountSetupCallback enterpriseAccountSetupCallback =
       new EnterpriseAccountSetupCallback() {
@@ -101,7 +111,7 @@ public class AddManagedAccountActivity extends ComponentActivity {
   String enrollmentToken = "";
 
   public void onNavigateNext(View nextButton) {
-    EditText token = (EditText) findViewById(R.id.enrollment_token);
+    EditText token = findViewById(R.id.enrollment_token);
     Log.d(TAG, "Enrollment token: " + token.getText().toString());
     enterpriseAccountSetup.addEnterpriseAccount(token.getText().toString());
   }

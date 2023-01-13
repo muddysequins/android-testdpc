@@ -27,17 +27,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/enrollment_token"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
         <TextView
             style="@style/SudItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_managed_account_explanation" />
+        
+        <EditText
+            android:id="@+id/enrollment_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/enrollment_token_hint"/>
+
 
     </LinearLayout>
 

@@ -66,7 +66,7 @@
     <string name="no_accounts_available">No accounts available.</string>
     <string name="requires_dpc_support_library">Requires DPC support library</string>
     <string name="add_managed_account_title">Add managed account</string>
-    <string name="add_managed_account_explanation">To add a managed account, enter the enrollment token below:
+    <string name="add_managed_account_explanation">To add a managed account, enter the enrollment token:
     </string>
     <string name="fail_to_add_managed_account">Failed to add managed account</string>
     <string name="success_add_managed_account">Managed account added</string>
@@ -1263,5 +1263,6 @@
     <string name="work_policy_info_name">TestDPC Work Policy Info</string>
     <string name="work_policy_info_description">This is the work policy info for TestDPC."
     </string>
+    <string name="enrollment_token_hint">Enrollment token</string>
 
 </resources>
