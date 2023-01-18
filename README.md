@@ -12,6 +12,8 @@ This sample uses the Bazel build system. To build this project, use the "bazel b
 
 This app can also be found [on the Play store](https://play.google.com/store/apps/details?id=com.afwsamples.testdpc).
 
+To use functionality that relies on the DPC support library, replace the file lib/dpcsupport.aar with the real support library before building.
+
 Provisioning
 ------------
 
